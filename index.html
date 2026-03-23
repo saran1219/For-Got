@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For-Got?</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+    <!-- Login Screen -->
+    <div id="loginContainer" class="login-container">
+        <h1>For-Got?</h1>
+        <p>Never forget a thing again.</p>
+        <button id="googleLoginBtn" class="google-btn">Sign in with Google</button>
+    </div>
+
+    <!-- Main App Screen -->
+    <div id="appContent" class="app-content hidden">
+        <header>
+            <div class="logo-area">
+                <h1>For-Got</h1>
+            </div>
+            <div id="userProfile" class="user-profile hidden">
+                <img id="userPhoto" src="" alt="Profile">
+                <span id="userName">User</span>
+                <button id="logoutBtn" class="logout-btn">Logout</button>
+            </div>
+        </header>
+
+        <div class="main-container">
+
+            <!-- Creation Form -->
+            <div class="form-card">
+                <h2>New Reminder</h2>
+
+                <div class="input-group">
+                    <label>Task Name</label>
+                    <input type="text" id="taskName" placeholder="e.g., Drink Water" required>
+                </div>
+
+                <div class="row">
+                    <div class="input-group">
+                        <label>Date</label>
+                        <input type="date" id="taskDate" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Time</label>
+                        <input type="time" id="taskTime" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Mood</label>
+                    <select id="taskMood">
+                        <option value="">-- No Mood --</option>
+                        <option value="funny">Funny</option>
+                        <option value="strict">Strict</option>
+                        <option value="cute">Cute</option>
+                        <option value="motivational">Motivational</option>
+                    </select>
+                    <button id="testMoodBtn" class="secondary-btn" style="margin-top:5px; font-size: 0.8em;">Test Mood
+                        (Preview)</button>
+                </div>
+
+                <div class="input-group">
+                    <label>Default Alarm Sound</label>
+                    <select id="alarmSound">
+                        <option value="">-- Select Sound (Optional) --</option>
+                        <option value="sounds/alarm1.mp3">Classic Alarm</option>
+                        <option value="sounds/alarm2.mp3">Soft Bell</option>
+                        <option value="sounds/alarm3.mp3">Loud Siren</option>
+                        <option value="sounds/alarm4.mp3">Morning Song</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Image (Optional)</label>
+                    <input type="file" id="taskImage" accept="image/*">
+                </div>
+
+                <div class="input-group">
+                    <label>Voice Note (Optional)</label>
+                    <div class="voice-controls">
+                        <button id="recordBtn" class="record-btn">🎤 Record Voice</button>
+                        <span id="recordStatus" class="record-status"></span>
+                    </div>
+                </div>
+
+                <div class="input-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="repeatTask">
+                        <span>Repeat Daily</span>
+                    </label>
+                </div>
+
+                <button id="setReminderBtn" class="primary-btn">Set Reminder</button>
+                <div id="notificationStatus" class="notification-status hidden" role="status"></div>
+            </div>
+
+            <!-- List Section -->
+            <div class="list-section">
+                <h2>Your Reminders</h2>
+                <div id="reminderList" class="reminders-list"></div>
+                <div id="remindersEmpty" class="reminders-empty hidden">
+                    No reminders yet. Add one above.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reminder Modal -->
+    <div id="reminderModal" class="modal hidden">
+        <div class="modal-content">
+            <h2 id="modalTitle">⏰ Reminder!</h2>
+
+            <div id="moodMediaContainer" style="display:none; text-align:center;">
+                <video id="moodVideo" muted loop playsinline style="width:100%; max-height:220px; border-radius:10px;">
+                </video>
+            </div>
+
+            <img id="modalImage" class="modal-image" alt="Reminder Image" style="display: none;">
+            <h3 id="modalTaskName">Task Name</h3>
+
+            <button id="modalPlayVoiceBtn" class="play-voice-btn hidden">🔊 Play Voice Note</button>
+
+            <div class="modal-actions">
+                <button id="modalSnoozeBtn" class="snooze-btn">Snooze (5m)</button>
+                <button id="modalDeclineBtn" class="decline-btn">Dismiss</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+
+</html>
