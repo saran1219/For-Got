@@ -322,10 +322,7 @@ function updateUI(isLoggedIn) {
         appContent.classList.remove("hidden");
     } else {
         loginContainer.classList.remove("hidden");
-        appContent.classList.remove("hidden"); // Allow offline access
-        if (currentUser) {
-            loginContainer.classList.add("hidden");
-        }
+        appContent.classList.add("hidden");
     }
 }
 
@@ -1073,6 +1070,6 @@ if ('serviceWorker' in navigator) {
 
 window.addEventListener('online', () => retryPendingCloudOps());
 
-// Initial Render (Local)
-loadLocalReminders();
-updateUI(false);
+// Initial state: keep app hidden until Firebase auth resolves.
+loginContainer.classList.remove("hidden");
+appContent.classList.add("hidden");
